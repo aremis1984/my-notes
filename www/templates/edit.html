@@ -1,0 +1,19 @@
+<!-- este template será utilizado por edit e insert dada su similitud -->
+
+<ion-view view-title = "Editar Nota" >
+	<ion-content>
+		<div class = "list">
+			<div class = "item item-input">
+				<input type = "text" ng-model = "note.title" placeholder = "Título" />
+			</div>
+		</div>	
+		<div class = "list">
+			<div class = "item item-input">
+				<textarea rows = "5" ng-model ="note.description" placeholder = "Descripción"></textarea>
+			</div>
+		</div>	
+		<div class = "padding">
+			<button class = "button button-block button-positive" ng-click = "save()">Guardar</button>
+		</div>
+	</ion-content>
+</ion-view>
