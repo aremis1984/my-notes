@@ -1,0 +1,68 @@
+727794640633 
+
+ AIzaSyCh4VfbKsablkOhENFU_us8BuL1sao4ICg 
+
+ /*function register() {
+			var pushNotification = window.plugins.pushNotification;
+		 
+			if (isAndroidDevice()) {
+				pushNotification.register(function(result) {                    
+					console.log('Status: ' + result);
+				}, function(result) {
+					alert('Error handler ' + result);
+				}, {
+					"senderID": "727794640633", // Google developers project number 
+					"ecb" : "onNotificationGCM" // Function name to handle notifications 
+				});
+			} else {
+				alert('Your device platform is not Android!!!');
+			}    
+		}
+
+		function onNotificationGCM(e) {
+			switch (e.event) {
+				case 'registered':
+					if (e.regid.length > 0) {
+						var registrationId = e.regid; //GCM Registration ID
+						registerOn3rdPartyServer(registrationId);
+					}
+					break;
+		 
+				case 'message':
+					if (e.foreground) {
+						alert('FOREGROUND MSG:' + JSON.stringify(e));
+					} else if (e.coldstart) {
+						alert('COLDSTART MSG:' + JSON.stringify(e));
+					} else {
+						alert('BACKGROUND:' + JSON.stringify(e));
+					}
+					break;
+		 
+				case 'error':
+					// handle error
+					break;
+		 
+				default:
+					// handle default
+					break;
+			}
+		}  
+
+		function registerOn3rdPartyServer(registrationId) {
+			$.ajax({
+				type: "POST",
+				url: "http://3rd_PARTY_SERVER_HOST:PORT/gcm-rest/api/registrations", // Your gcm-rest registration endpoint 
+				data: {
+					"registrationId": registrationId
+				},
+				headers : {
+					"Content-Type" : "application/x-www-form-urlencoded"
+				},
+				success: function() {
+					statusElement.html('READY FOR NOTIFICATIONS');
+				},
+				error: function(e) {
+					alert("Unable to register " + JSON.stringify(e));
+				}
+			});
+		}     */     

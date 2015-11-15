@@ -1,0 +1,22 @@
+<ion-view view-title = "Grupos" ng-controller = "ListgroupsCtrl">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right"
+        href="#/editgroup/{{group.id}}"
+        ng-repeat="group in groups track by group.id">
+        <h2>{{group.name}}</h2>
+        <p>{{group.numbers}}</p>
+        <i class="icon ion-arrow-right-b"></i>
+        <ion-option-button class="button-assertive icon-left ion-trash-b"
+          ng-click="removeGroup(group.id)">Eliminar</ion-option-button>
+      </ion-item>
+    </ion-list>
+   
+  </ion-content>
+  <div class="bar bar-footer bar-stable">
+    <div class="button-bar">
+      <a href="#/addGroup"
+        class="button button-positive icon-left ion-person-stalker">Crear Grupo</a>
+    </div>
+  </div>
+</ion-view>

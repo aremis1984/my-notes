@@ -14,13 +14,22 @@
           <!-- Deslizar a la izquierda para mostrar botón con esta etiqueta de ionic -->
         <ion-option-button class="button-assertive icon-left ion-trash-b"
           ng-click="remove(note.id)">Eliminar</ion-option-button>
+          <ion-option-button class="button-balanced icon-left ion-at"
+          ng-click="share(note.id)">E-mail</ion-option-button>
+          <ion-option-button class="button-energized icon-left ion-at"
+          ng-click="sms(note.id)">SMS</ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
   <div class="bar bar-footer bar-stable">
-    <a href="#/add"
-      class="button button-assertive icon-left ion-compose">Nueva Nota</a>
-    <button class="button button-light icon-left ion-shuffle"
-      ng-click="toggleReordering()">Reordenar</button>
+   <div class="button-bar">
+      <a href="#/add"
+        class="button button-assertive icon-left ion-compose">Nueva Nota</a>
+     <!-- <a href="#/listgroups"
+        class="button button-positive icon-left ion-person-stalker">Grupos</a>-->
+    
+      <button class="button button-positive icon-left ion-shuffle"
+          ng-click="toggleReordering()">Reordenar Notas</button>
+    </div>
   </div>
 </ion-view>

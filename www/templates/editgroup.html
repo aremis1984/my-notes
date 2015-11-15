@@ -1,0 +1,42 @@
+<ion-view view-title = "Crear/Editar Grupo" >
+	<ion-content>
+		<div class = "list">
+			<div class = "item item-input">
+				<input id = "name" type = "text" ng-model = "group.name" placeholder = "Nombre del grupo" />
+			</div>
+		</div>	
+		<div id = "contacts_wraper">
+			<div id = "addcontacts" class = "list" ng-repeat = "number in array">
+				<div id = "bloque_{{number[1]}}" class = "item item-input">
+					<input id = "{{number[1]}}" type = "text" ng-model = "number[0]" placeholder = "Contacto" />
+					<button class = "button button-light" ng-click = "seeContacts('{{number[1]}}')">Agenda</button>
+					<div ng-if = "number[1] != 'contact0'">
+						<button id = "{{number[1]}}" class = 'button button-assertive icon-left ion-trash-b' onclick = "removeContactEd($(this))"></button>
+					</div>	
+				</div>
+			</div>	
+			<div id = "addcontacts" class = "list" ng-if = "array == null">
+				<div class = "item item-input">
+					<input id = "contact0" type = "text" ng-model = "number0" placeholder = "Contacto" />
+					<button class = "button button-light" ng-click = "seeContacts('contact0')">Agenda</button>
+				</div>
+			</div>
+			 <div  data-ng-repeat="choice in choices">
+     			<div class = "item item-input">
+			      <input id = "{{choice.id}}" type="text" ng-model="choice.name" name="" placeholder="Número de móvil">
+			      <button class = "button button-energized" ng-click = "seeContacts('{{choice.id}}')">Agenda</button>
+			      <button class = 'button button-assertive icon-left ion-trash-b' ng-show="$last" ng-click = "removeChoice()">    	
+			   </div>
+			</div>
+			
+		</div>	
+		<input id = "cont" type = "hidden" value = "{{cont}}" />
+		<div class = "padding">
+			<button class = "button button-energized" ng-click = "addOther()">Añadir otro contacto</button>
+		</div>
+		<div class = "padding">
+			<button class = "button button-block button-positive" ng-click = "saveContacts()">Guardar</button>
+		</div>
+	</ion-content>
+</ion-view>
+

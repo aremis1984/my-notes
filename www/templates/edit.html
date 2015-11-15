@@ -1,6 +1,6 @@
 <!-- este template será utilizado por edit e insert dada su similitud -->
 
-<ion-view view-title = "Editar Nota" >
+<ion-view view-title = "Editar/Crear Nota" >
 	<ion-content>
 		<div class = "list">
 			<div class = "item item-input">
@@ -12,6 +12,17 @@
 				<textarea rows = "5" ng-model ="note.description" placeholder = "Descripción"></textarea>
 			</div>
 		</div>	
+		<div class="list">
+		  <label class="item item-input item-select">Seleccione un grupo con el que compartir la nota:
+		  	<span  class="nullable">
+			    <select ng-model="note.group" ng-options="group.name for group in groups track by group.id">
+			    	<option value=""> Ninguno </option>
+			    </select>
+			 </span>
+		  	
+		  </label>
+		</div>
+
 		<div class = "padding">
 			<button class = "button button-block button-positive" ng-click = "save()">Guardar</button>
 		</div>
