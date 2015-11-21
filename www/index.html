@@ -16,6 +16,7 @@
     <script src="lib/ionic-service-core/ionic-core.js"></script>  
     <script src="lib/ionic-service-push/ionic-push.js"></script>
     <script src="js/notestore.js"></script>
+    <script src="js/events.js"></script>
     <script src="js/contactstore.js"></script>
     <script src="js/push.js"></script>
     <script src="js/app.js"></script>
@@ -25,9 +26,8 @@
         id = elem.attr('id');
         $("#bloque_"+id+"").remove();
       }
-
-  
     </script>
+
   </head>
   <body ng-app="mynotes">
     <ion-side-menus>
@@ -50,6 +50,8 @@
             <ion-item menu-close href = "#add" >Crear Nota <i class = "icon ion-compose"></i></ion-item>
             <ion-item menu-close href = "#/listgroups" >Grupos <i class = "icon ion-person-stalker"></i></ion-item>
             <ion-item menu-close href = "#/addGroup" >Crear Grupo <i class = "icon ion-person-add"></i></ion-item>
+            <ion-item menu-close href = "#/events" >Ver Eventos <i class = "icon ion-calendar"></i></ion-item>
+            <ion-item menu-close href = "#/addevent" >Crear Evento <i class = "icon ion-pin"></i></ion-item>
           </ion-list>
         </ion-content>
       </ion-side-menu> 

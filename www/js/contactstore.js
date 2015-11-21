@@ -51,7 +51,7 @@ angular.module('mynotes.contactstore', ['ionic', 'ngCordova'])
 		       
 		      }
 		    }
-		    contact_phone = contact_phone.slice(0,-1);
+		   // contact_phone = contact_phone.slice(0,-1);
 		    var eachContact = {
 		    	id: group.id,
 		        name: name,
@@ -65,11 +65,13 @@ angular.module('mynotes.contactstore', ['ionic', 'ngCordova'])
 		seeContacts: function(n){
 			$cordovaContacts.pickContact().then(function (contactPicked) {
 		     var contact = angular.fromJson(contactPicked.phoneNumbers); 
+		     alert(contactPicked);
 			    var num = JSON.stringify(contact[0]['value']);
 			    var nc = num.replace("\"","");
 			    nc = nc.replace(/\s+/g, '');
 			    nc = nc.slice(0,-1);
-			    $("#"+n).val(nc);
+			 
+			   $("#"+n).val(nc);
 		    });
 		},
 	
@@ -97,7 +99,7 @@ angular.module('mynotes.contactstore', ['ionic', 'ngCordova'])
 					       
 			        	}
 		    		}
-		    		contact_phone = contact_phone.slice(0,-1);
+		    		//contact_phone = contact_phone.slice(0,-1);
 		    		groups[i].numbers = contact_phone;
 		          persistContacts();
 		          return;

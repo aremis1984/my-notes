@@ -14,7 +14,7 @@ angular.module('mynotes.notestore', ['ionic', 'ngCordova'])
 	  return {
 
 	    list: function() {
-	    	
+	    //localStorage.clear();
 	      return notes;
 	    },
 

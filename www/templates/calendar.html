@@ -1,0 +1,22 @@
+<ion-view view-title = "Eventos" >
+   <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right"
+        ng-repeat="event in events">
+        <h2>{{event.title}}</h2>
+        <p>{{event.description}}</p>
+        {{ event.date | date:'short' }}
+        <i class="icon ion-arrow-right-b"></i>
+        <ion-option-button class="button-assertive icon-left ion-trash-b"
+          ng-click="deleteEvent(event.id)">Eliminar</ion-option-button>
+      </ion-item>
+    </ion-list>
+   
+  </ion-content>
+   <div class="bar bar-footer bar-stable">
+   <div class="button-bar">
+      <a href="#/addevent"
+        class="button button-balanced icon-left ion-pin">Crear Evento</a>
+    </div>
+  </div>
+</ion-view>

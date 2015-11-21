@@ -1,7 +1,7 @@
 //encapsulamos todo en una funcion anónima para evitar que sea global y afecte a futuros desarrollos
 (function() {
 /* módulo angular mynotes depende de ionic y del servicio notestore  */
-var app = angular.module('mynotes', ['ionic', 'ngCordova', 'mynotes.notestore', 'mynotes.contactstore', 'ionic.service.core','ionic.service.push']);
+var app = angular.module('mynotes', ['ionic', 'ngCordova', 'mynotes.notestore', 'mynotes.contactstore', 'mynotes.Events', 'ionic.service.core','ionic.service.push']);
 
 //configuración del routing de la aplicación mediante estados y del controlador a usar según el mismo
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -38,6 +38,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/edit/:noteId',
     templateUrl: 'templates/edit.html',
     controller: 'EditCtrl'
+  });
+
+  $stateProvider.state('events', {
+    url: '/events',
+    templateUrl: 'templates/calendar.html',
+    controller: 'ListEvents'
+  });
+
+  $stateProvider.state('addevent', {
+    url: '/addevent',
+    templateUrl: 'templates/addevent.html',
+    controller: 'AddEvent'
   });
 
   $urlRouterProvider.otherwise('/list');
@@ -146,19 +158,6 @@ app.controller('AddGroupCtrl', function($scope, $cordovaContacts, $state, $locat
     $scope.choices.splice(lastItem);
   };
 
-/*$scope.addOther = function(){
-
-      var cont = $("#cont").val();
-      n = ++cont;
-      $("#cont").val(n);
-
-      //$scope.other = "<div id = 'blok_contact"+n+"' class = 'item item-input'><input id = 'contact"+n+"' type = 'text' ng-model = 'number"+n+"' placeholder = 'Contacto "+n+"' /><button class = 'button button-energized' ng-click = \"seeContacts('contact"+n+"')\">Agenda</button><div><button class = 'button button-assertive icon-left ion-trash-b' onclick = 'removeContact("+n+")'></button></div></div>";
-      $("#contacts_wraper").append("<div id = 'blok_contact"+n+"' class = 'item item-input'><input id = 'contact"+n+"' type = 'text'"+
-        " ng-model = 'number"+n+"' placeholder = 'Contacto "+n+"' /><button class = 'button button-energized' ng-click = \"seeContacts('contact"+n+"')\">Agenda"+
-        "</button><div><button class = 'button button-assertive icon-left ion-trash-b' onclick = 'removeContact("+n+")'></button></div></div>");
-      
-  };    */
-
   $scope.seeContacts = function(n){
       ContactStore.seeContacts(n);
   };
@@ -250,7 +249,47 @@ app.controller('EditCtrl', function($scope, $state, NoteStore, ContactStore) {
   };
 });
 
+app.controller('ListEvents', function($scope, $cordovaCalendar, Events){
 
+  $scope.events = Events.get();
+  //console.log(ev);
+  $scope.deleteEvent = function(evId){
+    Events.deleteEvent(evId);
+  };
+});
+
+app.controller('AddEvent', function($scope, $cordovaCalendar, $cordovaDatePicker, $location, Events){
+
+  $scope.ev = {
+    id: new Date().getTime().toString(),
+    title: '',
+    description: '',
+    date: ''
+  };
+
+   var options = {
+      date: new Date(),
+      mode: 'datetime', // 'date' or 'time'
+      minDate: new Date(),
+      allowOldDates: false,
+      allowFutureDates: true,
+      doneButtonLabel: 'DONE',
+      doneButtonColor: '#F2F3F4',
+      cancelButtonLabel: 'CANCEL',
+      cancelButtonColor: '#000000'
+    };
+    $scope.showDate = function(){
+      $cordovaDatePicker.show(options).then(function(date){
+            $scope.ev.date = date;
+      });
+    };
+    
+    $scope.saveEvent = function(){
+      Events.saveEvent($scope.ev);
+      $location.path('/events');
+    }; 
+
+});
 
 
 angular.module('notPush', ['ionic', 'ngCordova','ionic.service.core', 'ionic.service.push'])
@@ -265,10 +304,9 @@ angular.module('notPush', ['ionic', 'ngCordova','ionic.service.core', 'ionic.ser
 
     // Establecemos alguna información para nuestro usuario
     angular.extend(user, {
-      name: 'Ivan',
+      name: 'Marina',
       description: 'Fullstack Developer',
-      location: 'Islas Canarias',
-      website: 'http://ivanbtrujillo.com'
+      location: 'Islas Canarias'
     });
 
     // Cuando tenemos todos los datos, nos identificamos contra el Ionic User Service

@@ -1,0 +1,20 @@
+<ion-view view-title = "Crear/Editar Evento" >
+  <ion-content>
+	<ion-item class = "item item-input">
+		<input type = "text" ng-model = "ev.title" placeholder = "Título del evento" />
+	</ion-item>
+
+	<ion-item class = "item item-input">
+		<textarea rows = "5" ng-model ="ev.description" placeholder = "Descripción"></textarea>
+	</ion-item>
+		
+  	<ion-item class="item-icon-right">
+	    <i ng-click="showDate()" 
+	       class="icon ion-ios-calendar-outline"></i>
+	    	¿Cuando? {{ev.date | date:'short'}}
+	</ion-item>
+  	<div class = "padding">
+		<button class = "button button-block button-positive" ng-click = "saveEvent()">Guardar</button>
+	</div>
+  </ion-content>
+</ion-view>
